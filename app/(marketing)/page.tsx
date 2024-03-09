@@ -21,8 +21,8 @@ const MarketingPage = () => {
             >
                 <Heading />
                 <Heroes />
-                <Footer />
             </div>
+            <Footer />
         </div>
     );
 };
