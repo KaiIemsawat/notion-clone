@@ -1,8 +1,10 @@
 "use client";
 
-import { useScrollTop } from "@/ hooks/use-scroll-top";
+import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
 import { Logo } from "./logo";
+
+import { ModeToggle } from "@/components/mode-toggle";
 
 export const Navbar = () => {
     const scrolled = useScrollTop();
@@ -26,7 +28,7 @@ export const Navbar = () => {
                     gap-x-2
                 "
             >
-                Login
+                <ModeToggle />
             </div>
         </div>
     );
