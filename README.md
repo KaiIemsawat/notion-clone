@@ -37,4 +37,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 SETUP Convex : https://docs.convex.dev/home
 Then register to : https://clerk.com/
+work on .env.local
 To run Convex : npx convex dev
