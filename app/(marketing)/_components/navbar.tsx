@@ -8,6 +8,7 @@ import { useScrollTop } from "@/hooks/use-scroll-top";
 import { Logo } from "./logo";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/spinner";
 
 export const Navbar = () => {
     const { isAuthenticated, isLoading } = useConvexAuth();
@@ -32,7 +33,7 @@ export const Navbar = () => {
                     gap-x-2
                 "
             >
-                {isLoading && <p>Loading.....</p>}
+                {isLoading && <Spinner />}
                 {!isAuthenticated && !isLoading && (
                     <>
                         <SignInButton mode="modal">
