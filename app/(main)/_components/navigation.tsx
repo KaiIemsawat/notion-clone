@@ -163,6 +163,7 @@ export const Navigation = () => {
                     {isCollapsed && (
                         <MenuIcon
                             className="h-6 w-6 text-muted-foreground"
+                            onClick={resetWidth}
                             role="button"
                         />
                     )}
