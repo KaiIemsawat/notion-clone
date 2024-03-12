@@ -1,5 +1,37 @@
 "use client";
 
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { ChevronsLeftRight } from "lucide-react";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useUser } from "@clerk/clerk-react";
+
 export const UserItem = () => {
-    return <div>UserItem</div>;
+    const { user } = useUser();
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <div
+                    className="flex items-center text-sm p-3 w-full hover:bg-primary/5"
+                    role="button"
+                >
+                    <div className="gap-x-2 flex items-center max-w-[150px]">
+                        <Avatar className="h-5 w-5">
+                            <AvatarImage src={user?.imageUrl} />
+                        </Avatar>
+                        <span className="text-start font-medium line-clamp-1">
+                            {user?.fullName}&apos;s Jotion
+                        </span>
+                    </div>
+                    <ChevronsLeftRight className="rotate-90 ml-2 text-muted-foreground h-4 w-4" />
+                </div>
+            </DropdownMenuTrigger>
+        </DropdownMenu>
+    );
 };
