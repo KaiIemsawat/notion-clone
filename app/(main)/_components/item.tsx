@@ -1,9 +1,13 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
+import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
+import { useMutation } from "convex/react";
 import { ChevronDown, ChevronRight, LucideIcon, Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 interface ItemProps {
     id?: Id<"documents">;
@@ -30,11 +34,32 @@ export const Item = ({
     onExpand,
     expanded,
 }: ItemProps) => {
+    const router = useRouter();
+    const create = useMutation(api.documents.create);
+
     const handleExpand = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>
     ) => {
         event.stopPropagation();
         onExpand?.();
+    };
+
+    const onCreate = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        event.stopPropagation();
+        if (!id) return;
+        const promise = create({ title: "Untitled", parentDocument: id }).then(
+            (documentId) => {
+                if (!expanded) {
+                    onExpand?.();
+                }
+                // router.push(`/documents/${documentId}`);
+            }
+        );
+        toast.promise(promise, {
+            loading: "Creating a new note....",
+            success: "New note created!!!",
+            error: "Failed to create a new note..!!",
+        });
     };
 
     const ChevronIcon = expanded ? ChevronDown : ChevronRight;
@@ -112,6 +137,8 @@ export const Item = ({
                             hover:bg-neutral-300
                             dark:hover:bg-neutral-600
                         "
+                        role="button"
+                        onClick={onCreate}
                     >
                         <Plus className="h-4 w-4 text-muted-foreground" />
                     </div>
