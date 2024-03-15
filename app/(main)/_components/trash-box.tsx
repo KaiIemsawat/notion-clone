@@ -7,6 +7,8 @@ import { useMutation, useQuery } from "convex/react";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Spinner } from "@/components/spinner";
+import { Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 export const TrashBox = () => {
     const router = useRouter();
@@ -61,5 +63,22 @@ export const TrashBox = () => {
         }
     };
 
-    return <div>TrashBox</div>;
+    return (
+        <div className="text-sm">
+            <div className="flex items-center gap-x-1 p-2">
+                <Search className="h-4 w-4" />
+                <Input
+                    className="h-7 px-2 focus-visible:ring-transparent bg-secondary"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Filter by page title..."
+                />
+            </div>
+            <div className="mt-2 px-1 pb-1">
+                <p className="hidden last:block text-xs text-center text-muted-foreground pb-2">
+                    No document found..
+                </p>
+            </div>
+        </div>
+    );
 };
