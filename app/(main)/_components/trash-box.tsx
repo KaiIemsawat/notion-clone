@@ -7,7 +7,7 @@ import { useMutation, useQuery } from "convex/react";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Spinner } from "@/components/spinner";
-import { Search } from "lucide-react";
+import { Search, Trash, Undo } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 export const TrashBox = () => {
@@ -94,7 +94,22 @@ export const TrashBox = () => {
                         role="button"
                         onClick={() => onClick(document._id)}
                     >
-                        <span>{document.title}</span>
+                        <span className="truncate pl-2">{document.title}</span>
+                        <div className="flex items-center">
+                            <div
+                                className="rounded-sm p-2 hover:bg-neutral-200"
+                                role="button"
+                                onClick={(e) => onRestore(e, document._id)}
+                            >
+                                <Undo className="h-4 w-4 text-muted-foreground" />
+                            </div>
+                            <div
+                                className="rounded-sm p-2 hover:bg-neutral-200"
+                                role="button"
+                            >
+                                <Trash className="h-4 w-4 text-muted-foreground" />
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>
