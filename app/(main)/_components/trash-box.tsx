@@ -78,6 +78,25 @@ export const TrashBox = () => {
                 <p className="hidden last:block text-xs text-center text-muted-foreground pb-2">
                     No document found..
                 </p>
+                {filteredDocuments?.map((document) => (
+                    <div
+                        className="
+                            text-sm
+                            rounded-sm
+                            w-full
+                            hover:bg-primary/5
+                            flex
+                            items-center
+                            text-primary
+                            justify-between
+                        "
+                        key={document._id}
+                        role="button"
+                        onClick={() => onClick(document._id)}
+                    >
+                        <span>{document.title}</span>
+                    </div>
+                ))}
             </div>
         </div>
     );
