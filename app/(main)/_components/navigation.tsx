@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import {
     ChevronsLeft,
     MenuIcon,
+    Plus,
     PlusCircle,
     Search,
     Settings,
@@ -184,10 +185,12 @@ export const Navigation = () => {
                     />
                 </div>
                 <div className="mt-4">
-                    {/* {documents?.map((document) => (
-                        <p key={document._id}>{document.title}</p>
-                    ))} */}
                     <DocumentList />
+                    <Item
+                        onClick={handleCreate}
+                        icon={Plus}
+                        label="Add a page"
+                    />
                 </div>
 
                 {/* Hover over sidebar */}
