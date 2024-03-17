@@ -1,4 +1,3 @@
-import { Eclipse } from "lucide-react";
 import { create } from "zustand";
 
 type SearchStore = {
